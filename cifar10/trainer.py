@@ -136,7 +136,7 @@ class LitCifar10(LightningModule):
         return loss
 
     def on_test_end(self):
-        plot_incorrect_predictions(self.incorrect, self.class_map, img_count=20)
+        plot_incorrect_predictions(self.incorrect, self.class_map, count=20)
 
     def configure_optimizers(self):
         optimizer = get_adam_optimizer(self.model, self.lr, weight_decay=self.weight_decay)
