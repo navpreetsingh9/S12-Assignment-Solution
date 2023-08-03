@@ -139,7 +139,7 @@ class LitCifar10(LightningModule):
         scheduler = {
             'scheduler': lr_scheduler,
             'interval': 'step',
-            'frequency': 1
+            'frequency': len(self.train_dataloader())
         }
         return [optimizer], [scheduler]
 
