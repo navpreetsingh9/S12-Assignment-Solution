@@ -82,8 +82,8 @@ class LitCifar10(LightningModule):
 
         preds = torch.argmax(y_pred, dim=1)
         self.accuracy(preds, target)
-        self.log("train_loss", loss, prog_bar=True)
-        self.log("train_acc", self.accuracy, prog_bar=True)
+        #self.log("train_loss", loss, prog_bar=True)
+        #self.log("train_acc", self.accuracy, prog_bar=True)
         self.logger.experiment.add_scalars('loss', {'train': loss}, self.current_epoch)
         self.logger.experiment.add_scalars('acc', {'train': self.accuracy}, self.current_epoch)
         return loss
@@ -96,8 +96,8 @@ class LitCifar10(LightningModule):
         self.accuracy(preds, target)
 
         # Calling self.log will surface up scalars for you in TensorBoard
-        self.log("val_loss", loss, prog_bar=True)
-        self.log("val_acc", self.accuracy, prog_bar=True)
+        #self.log("val_loss", loss, prog_bar=True)
+        #self.log("val_acc", self.accuracy, prog_bar=True)
         self.logger.experiment.add_scalars('loss', {'valid': loss}, self.current_epoch)
         self.logger.experiment.add_scalars('acc', {'valid': self.accuracy}, self.current_epoch)
         return loss
