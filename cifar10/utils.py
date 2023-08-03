@@ -4,12 +4,8 @@ from functools import reduce
 from typing import Union
 import torch
 from torch import nn
-from torchinfo import summary
 import torch.nn.functional as F
 
-from pytorch_grad_cam import GradCAM
-from pytorch_grad_cam.utils.image import show_cam_on_image
-from pytorch_grad_cam.utils.model_targets import ClassifierOutputTarget
 
 def imshow(img):
     """
@@ -67,16 +63,6 @@ def show_images(img_loader, class_map, count=10):
             plt.imshow(np.clip(imgs[i], 0, 1).cpu().numpy().transpose(1, 2, 0).astype(float))
         break
     plt.show()
-
-    
-def print_summary(model, input_size=(1, 28, 28)):
-    """Print Model summary
-
-    Args:
-        model (Net): Model Instance
-        input_size (tuple, optional): Input size. Defaults to (1, 28, 28).
-    """
-    return summary(model, input_size=input_size)
 
 def get_device() -> tuple:
     """Get Device type
@@ -234,28 +220,4 @@ def plot_network_performance(epochs, train_losses, test_losses, train_acc, test_
     plt.legend()
 
     plt.tight_layout()
-    plt.show()
-
-
-def show_gradcam(model, incorrect, class_map, use_cuda, mean, std, count=10):
-    target_layers  = [model.layer4[-1]]
-    cam = GradCAM(model=model, target_layers=target_layers, use_cuda=use_cuda)
-
-    if not count % 10 == 0:
-        return
-
-    classes = list(class_map.keys())
-    fig = plt.figure(figsize=(15, 5))
-    fig.suptitle("Correct_Label/Incorrect_Prediction", fontsize=16, fontweight="bold")
-    for i, (imgs, labels, pred, output) in enumerate(incorrect):
-        input_tensor = imgs.unsqueeze(0)
-        rgb_img = denormalize_image(input_tensor, mean, std).transpose(3, 1).numpy()[0]
-        grayscale_cam = cam(input_tensor=input_tensor)
-        grayscale_cam = grayscale_cam[0, :]
-        visualization = show_cam_on_image(rgb_img, grayscale_cam, use_rgb=True)
-        ax = fig.add_subplot(int(20 / 10), 10, i + 1, xticks=[], yticks=[])
-        ax.set_title(f'{classes[labels.item()]}/{classes[pred.item()]}')
-        plt.imshow(visualization)
-        if i+1 == count:
-            break
     plt.show()
