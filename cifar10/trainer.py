@@ -87,7 +87,7 @@ class LitCifar10(LightningModule):
         self.log("train_acc", self.accuracy, prog_bar=True, logger=False)
         self.log("lr", cur_lr, prog_bar=True, logger=False)
         self.logger.experiment.add_scalars('loss', {'train': loss}, self.current_epoch)
-        #self.logger.experiment.add_scalars('acc', {'train': self.accuracy}, self.current_epoch)
+        self.logger.experiment.add_scalars('acc', {'train': self.accuracy(preds, target)}, self.current_epoch)
         return loss
 
     def validation_step(self, batch, batch_idx):
@@ -101,7 +101,7 @@ class LitCifar10(LightningModule):
         self.log("val_loss", loss, prog_bar=True, logger=False)
         self.log("val_acc", self.accuracy, prog_bar=True, logger=False)
         self.logger.experiment.add_scalars('loss', {'valid': loss}, self.current_epoch)
-        #self.logger.experiment.add_scalars('acc', {'valid': self.accuracy}, self.current_epoch)
+        self.logger.experiment.add_scalars('acc', {'valid': self.accuracy(preds, target)}, self.current_epoch)
         return loss
 
     def test_step(self, batch, batch_idx):
