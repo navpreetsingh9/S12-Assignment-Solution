@@ -82,7 +82,7 @@ class LitCifar10(LightningModule):
 
         preds = torch.argmax(y_pred, dim=1)
         self.accuracy(preds, target)
-        cur_lr = self.trainer.optimizer[0].param_groups[0]['lr']
+        cur_lr = self.trainer.optimizers[0].param_groups[0]['lr']
         self.log("train_loss", loss, prog_bar=True, logger=False)
         self.log("train_acc", self.accuracy, prog_bar=True, logger=False)
         self.log("lr", cur_lr, prog_bar=True, logger=False)
