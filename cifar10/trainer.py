@@ -31,11 +31,11 @@ def get_lr_finder(model, optimizer, criterion, train_loader, end_lr, device="cud
     return suggested_lr
 
 
-def get_onecyclelr_scheduler(optimizer, max_lr, steps_per_epoch, epochs):
+def get_onecyclelr_scheduler(optimizer, max_lr, train_loader, epochs):
     return OneCycleLR(
         optimizer,
         max_lr=max_lr,
-        steps_per_epoch=steps_per_epoch,
+        steps_per_epoch=len(train_loader),
         epochs=epochs,
         pct_start=5/epochs,
         div_factor=100,
@@ -118,7 +118,7 @@ class LitCifar10(LightningModule):
     def configure_optimizers(self):
         optimizer = get_adam_optimizer(self.model, self.lr, weight_decay=self.weight_decay)
         max_lr = get_lr_finder(self.model, optimizer, self.criterion, self.train_dataloader(), self.end_lr)
-        lr_scheduler = get_onecyclelr_scheduler(optimizer, max_lr, steps_per_epoch=self.batch_size, epochs=self.trainer.max_epochs)
+        lr_scheduler = get_onecyclelr_scheduler(optimizer, max_lr, train_loader=self.train_dataloader(), epochs=self.trainer.max_epochs)
         scheduler = {
             'scheduler': lr_scheduler,
             'interval': 'step',
