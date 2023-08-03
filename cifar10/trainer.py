@@ -36,7 +36,7 @@ def get_onecyclelr_scheduler(optimizer, max_lr, train_loader, epochs):
     return OneCycleLR(
         optimizer,
         max_lr=max_lr,
-        steps_per_epoch=len(train_loader),
+        steps_per_epoch=98,
         epochs=epochs,
         pct_start=5/epochs,
         div_factor=100,
