@@ -79,6 +79,11 @@ class LitCifar10(LightningModule):
         data, target = batch
         y_pred = self(data)
         loss = self.criterion(y_pred, target)
+
+        preds = torch.argmax(y_pred, dim=1)
+        self.accuracy(preds, target)
+        self.log("train_loss", loss, prog_bar=True)
+        self.log("train_acc", self.accuracy, prog_bar=True)
         return loss
 
     def validation_step(self, batch, batch_idx):
