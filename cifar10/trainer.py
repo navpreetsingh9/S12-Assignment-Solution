@@ -133,7 +133,7 @@ class LitCifar10(LightningModule):
 
     def setup(self, stage=None):
 
-        seed_everything(42, workers=True)
+        seed_everything(1, workers=True)
 
         # Assign train/val datasets for use in dataloaders
         if stage == "fit" or stage is None:
