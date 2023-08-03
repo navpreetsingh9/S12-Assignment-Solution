@@ -144,8 +144,7 @@ class LitCifar10(LightningModule):
         lr_scheduler = get_onecyclelr_scheduler(optimizer, max_lr, train_loader=self.train_dataloader(), epochs=self.trainer.max_epochs)
         scheduler = {
             'scheduler': lr_scheduler,
-            'interval': 'step',
-            'frequency': len(self.train_dataloader())
+            'interval': 'step'
         }
         return [optimizer], [scheduler]
 
