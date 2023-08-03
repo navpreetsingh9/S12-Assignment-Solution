@@ -82,8 +82,10 @@ class LitCifar10(LightningModule):
 
         preds = torch.argmax(y_pred, dim=1)
         self.accuracy(preds, target)
+        cur_lr = self.trainer.optimizers[0].param_groups[0]['lr']
         self.log("train_loss", loss, prog_bar=True, logger=False)
         self.log("train_acc", self.accuracy, prog_bar=True, logger=False)
+        self.log("lr", cur_lr, prog_bar=True, logger=False)
         self.logger.experiment.add_scalars('loss', {'train': loss}, self.current_epoch)
         #self.logger.experiment.add_scalars('acc', {'train': self.accuracy}, self.current_epoch)
         return loss
@@ -112,8 +114,7 @@ class LitCifar10(LightningModule):
         scheduler = get_onecyclelr_scheduler(optimizer, max_lr, steps_per_epoch=self.batch_size, epochs=self.trainer.max_epochs)
         scheduler = {
             'scheduler': scheduler,
-            'interval': 'epoch',
-            'frequency': 1
+            'interval': 'epoch'
         }
         return [optimizer], [scheduler]
 
