@@ -11,6 +11,7 @@ from torch.utils.data import DataLoader
 from cifar10.model import CustomResNet
 from cifar10.dataloader import Cifar10SearchDataset
 from cifar10.transforms import CustomResnetTransforms
+from cifar10.utils import get_incorrect_predictions, plot_incorrect_predictions
 
 from torch.optim.lr_scheduler import OneCycleLR
 from torch_lr_finder import LRFinder
@@ -55,6 +56,18 @@ class LitCifar10(LightningModule):
 
         # Hardcode some dataset specific attributes
         self.num_classes = 10
+        self.class_map = class_map = {
+                    "PLANE": 0,
+                    "CAR": 1,
+                    "BIRD": 2,
+                    "CAT": 3,
+                    "DEER": 4,
+                    "DOG": 5,
+                    "FROG": 6,
+                    "HORSE": 7,
+                    "SHIP": 8,
+                    "TRUCK": 9,
+                }
         means = [0.4914, 0.4822, 0.4465]
         stds = [0.2470, 0.2435, 0.2616]
 
@@ -114,6 +127,10 @@ class LitCifar10(LightningModule):
         self.log("test_loss", loss, prog_bar=True)
         self.log("test_acc", self.accuracy, prog_bar=True)
         return loss
+
+    def on_test_end(self):
+        incorrect = get_incorrect_predictions(self.model, self.test_dataloader)
+        plot_incorrect_predictions(incorrect, self.class_map, img_count=20)
 
     def configure_optimizers(self):
         optimizer = get_adam_optimizer(self.model, self.lr, weight_decay=self.weight_decay)
