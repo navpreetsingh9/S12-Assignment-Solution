@@ -99,9 +99,9 @@ class LitCifar10(LightningModule):
 
     def configure_optimizers(self):
         optimizer = get_adam_optimizer(self.model, self.lr, weight_decay=self.weight_decay)
-        #max_lr = get_lr_finder(self.model, optimizer, self.criterion, self.train_dataloader(), self.end_lr)
-        #scheduler = get_onecyclelr_scheduler(optimizer, max_lr, steps_per_epoch=self.batch_size, epochs=self.trainer.max_epochs)
-        #return [optimizer], [scheduler]
+        max_lr = get_lr_finder(self.model, optimizer, self.criterion, self.train_dataloader(), self.end_lr)
+        scheduler = get_onecyclelr_scheduler(optimizer, max_lr, steps_per_epoch=self.batch_size, epochs=self.trainer.max_epochs)
+        return [optimizer], [scheduler]
         return optimizer
 
     ####################
