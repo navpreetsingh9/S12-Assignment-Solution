@@ -83,6 +83,8 @@ class LitCifar10(LightningModule):
         self.weight_decay = weight_decay
         self.batch_size = batch_size
 
+        self.incorrect = []
+
         self.accuracy = Accuracy(task='multiclass', num_classes=self.num_classes)
 
     def forward(self, x):
@@ -126,11 +128,15 @@ class LitCifar10(LightningModule):
 
         self.log("test_loss", loss, prog_bar=True)
         self.log("test_acc", self.accuracy, prog_bar=True)
+
+        for d, t, p, o in zip(data, target, preds, output):
+                if p.eq(t.view_as(p)).item() == False:
+                    self.incorrect.append(
+                        [d.cpu(), t.cpu(), p.cpu(), o[p.item()].cpu()])
         return loss
 
     def on_test_end(self):
-        incorrect = get_incorrect_predictions(self.model, self.test_dataloader)
-        plot_incorrect_predictions(incorrect, self.class_map, img_count=20)
+        plot_incorrect_predictions(self.incorrect, self.class_map, img_count=20)
 
     def configure_optimizers(self):
         optimizer = get_adam_optimizer(self.model, self.lr, weight_decay=self.weight_decay)
