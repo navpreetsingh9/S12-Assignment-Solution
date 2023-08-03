@@ -82,7 +82,7 @@ class LitCifar10(LightningModule):
 
         preds = torch.argmax(y_pred, dim=1)
         self.accuracy(preds, target)
-        cur_lr = self.trainer.optimizers[0].param_groups[0]['lr']
+        cur_lr = self.trainer.optimizer[0].param_groups[0]['lr']
         self.log("train_loss", loss, prog_bar=True, logger=False)
         self.log("train_acc", self.accuracy, prog_bar=True, logger=False)
         self.log("lr", cur_lr, prog_bar=True, logger=False)
@@ -111,10 +111,11 @@ class LitCifar10(LightningModule):
     def configure_optimizers(self):
         optimizer = get_adam_optimizer(self.model, self.lr, weight_decay=self.weight_decay)
         max_lr = get_lr_finder(self.model, optimizer, self.criterion, self.train_dataloader(), self.end_lr)
-        scheduler = get_onecyclelr_scheduler(optimizer, max_lr, steps_per_epoch=self.batch_size, epochs=self.trainer.max_epochs)
+        lr_scheduler = get_onecyclelr_scheduler(optimizer, max_lr, steps_per_epoch=self.batch_size, epochs=self.trainer.max_epochs)
         scheduler = {
-            'scheduler': scheduler,
-            'interval': 'epoch'
+            'scheduler': lr_scheduler,
+            'interval': 'step',
+            'frequency': 1
         }
         return [optimizer], [scheduler]
 
