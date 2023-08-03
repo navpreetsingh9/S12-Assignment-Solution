@@ -4,7 +4,6 @@ from functools import reduce
 from typing import Union
 import torch
 from torch import nn
-from torchinfo import summary
 import torch.nn.functional as F
 
 from pytorch_grad_cam import GradCAM
@@ -68,15 +67,7 @@ def show_images(img_loader, class_map, count=10):
         break
     plt.show()
 
-    
-def print_summary(model, input_size=(1, 28, 28)):
-    """Print Model summary
 
-    Args:
-        model (Net): Model Instance
-        input_size (tuple, optional): Input size. Defaults to (1, 28, 28).
-    """
-    return summary(model, input_size=input_size)
 
 def get_device() -> tuple:
     """Get Device type
