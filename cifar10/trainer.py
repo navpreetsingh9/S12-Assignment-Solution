@@ -105,8 +105,15 @@ class LitCifar10(LightningModule):
         return loss
 
     def test_step(self, batch, batch_idx):
-        # Here we just reuse the validation_step for testing
-        return self.validation_step(batch, batch_idx)
+        data, target = batch
+        output = self(data)
+        loss = self.criterion(output, target)
+        preds = torch.argmax(output, dim=1)
+        self.accuracy(preds, target)
+
+        self.log("test_loss", loss, prog_bar=True, logger=False)
+        self.log("test_acc", self.accuracy, prog_bar=True, logger=False)
+        return loss
 
     def configure_optimizers(self):
         optimizer = get_adam_optimizer(self.model, self.lr, weight_decay=self.weight_decay)
