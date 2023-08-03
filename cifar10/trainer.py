@@ -102,7 +102,6 @@ class LitCifar10(LightningModule):
         max_lr = get_lr_finder(self.model, optimizer, self.criterion, self.train_dataloader(), self.end_lr)
         scheduler = get_onecyclelr_scheduler(optimizer, max_lr, steps_per_epoch=self.batch_size, epochs=self.trainer.max_epochs)
         return [optimizer], [scheduler]
-        return optimizer
 
     ####################
     # DATA RELATED HOOKS
