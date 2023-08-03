@@ -101,7 +101,7 @@ def load_weights_from_path(model, path):
     model.load_state_dict(torch.load(path))
     return model
 
-def get_incorrect_predictions(model, loader, device):
+def get_incorrect_predictions(model, loader, device="cuda"):
     """Get all incorrect predictions
 
     Args:
