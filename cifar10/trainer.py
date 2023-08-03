@@ -111,7 +111,8 @@ class LitCifar10(LightningModule):
         preds = torch.argmax(output, dim=1)
         self.accuracy(preds, target)
 
-        self.log_dict({"test_loss": loss, "test_acc": self.accuracy}, logger=False)
+        self.log("test_loss", loss, prog_bar=True)
+        self.log("test_acc", self.accuracy, prog_bar=True)
         return loss
 
     def configure_optimizers(self):
