@@ -5,7 +5,12 @@ from typing import Union
 import torch
 from torch import nn
 import torch.nn.functional as F
+from torchvision import transforms
 
+inv_normalize = transforms.Normalize(
+    mean=[-0.50/0.23, -0.50/0.23, -0.50/0.23],
+    std=[1/0.23, 1/0.23, 1/0.23]
+)
 
 def imshow(img):
     """
@@ -190,11 +195,10 @@ def plot_incorrect_predictions(predictions, class_map, count=10):
     classes = list(class_map.keys())
 
     fig = plt.figure(figsize=(15, 5))
-    fig.suptitle("Correct_Label/Incorrect_Prediction", fontsize=16, fontweight="bold")
     for i, (d, t, p, o) in enumerate(predictions):
         ax = fig.add_subplot(int(count/10), 10, i + 1, xticks=[], yticks=[])
-        ax.set_title(f'{classes[t.item()]}/{classes[p.item()]}')
-        plt.imshow(np.clip(d, 0, 1).cpu().numpy().transpose(1, 2, 0))
+        ax.set_title('Label={}\nPred={}'.format(classes[t.item()],classes[p.item()]))
+        plt.imshow(inv_normalize(d).numpy().transpose(1, 2, 0))
         if i+1 == count:
             break
     plt.show()
