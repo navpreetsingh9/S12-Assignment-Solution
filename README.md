@@ -164,3 +164,154 @@ The dataset is transformed using the following steps:
 - Batch size: 512
 - Optimizer: Adam
 - Loss function: CrossEntropyLoss
+
+
+
+## Training Logs
+
+```
+Epoch 0/23 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 98/98 0:00:19 • 0:00:00 4.97it/s v_num: 1 train_loss: 1.322          
+                                                                               train_acc: 0.551 lr: 0.011          
+
+
+Epoch 1/23 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 98/98 0:00:20 • 0:00:00 4.83it/s v_num: 1 train_loss: 0.885          
+                                                                               train_acc: 0.682 lr: 0.022 val_loss:
+                                                                               1.211 val_acc: 0.507                
+
+
+Epoch 2/23 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 98/98 0:00:19 • 0:00:00 4.95it/s v_num: 1 train_loss: 0.733          
+                                                                               train_acc: 0.774 lr: 0.033 val_loss:
+                                                                               0.913 val_acc: 0.636                
+
+
+Epoch 3/23 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 98/98 0:00:20 • 0:00:00 4.80it/s v_num: 1 train_loss: 0.663          
+                                                                               train_acc: 0.78 lr: 0.044 val_loss: 
+                                                                               0.782 val_acc: 0.72                 
+
+
+Epoch 4/23 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 98/98 0:00:20 • 0:00:00 4.88it/s v_num: 1 train_loss: 0.727          
+                                                                               train_acc: 0.768 lr: 0.055 val_loss:
+                                                                               0.999 val_acc: 0.737                
+
+
+Epoch 5/23 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 98/98 0:00:20 • 0:00:00 4.86it/s v_num: 1 train_loss: 0.719          
+                                                                               train_acc: 0.747 lr: 0.052 val_loss:
+                                                                               0.914 val_acc: 0.744                
+
+
+Epoch 6/23 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 98/98 0:00:20 • 0:00:00 4.74it/s v_num: 1 train_loss: 0.569          
+                                                                               train_acc: 0.81 lr: 0.05 val_loss:  
+                                                                               0.739 val_acc: 0.756                
+
+
+Epoch 7/23 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 98/98 0:00:20 • 0:00:00 4.78it/s v_num: 1 train_loss: 0.587          
+                                                                               train_acc: 0.801 lr: 0.047 val_loss:
+                                                                               0.94 val_acc: 0.752                 
+
+
+Epoch 8/23 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 98/98 0:00:20 • 0:00:00 4.79it/s v_num: 1 train_loss: 0.615          
+                                                                               train_acc: 0.786 lr: 0.044 val_loss:
+                                                                               0.646 val_acc: 0.778                
+
+
+Epoch 9/23 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 98/98 0:00:20 • 0:00:00 4.73it/s v_num: 1 train_loss: 0.596          
+                                                                               train_acc: 0.81 lr: 0.041 val_loss: 
+                                                                               0.645 val_acc: 0.782                
+
+
+Epoch 10/23 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 98/98 0:00:20 • 0:00:00 4.80it/s v_num: 1 train_loss: 0.529         
+                                                                                train_acc: 0.824 lr: 0.038         
+                                                                                val_loss: 0.624 val_acc: 0.788     
+
+
+Epoch 11/23 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 98/98 0:00:20 • 0:00:00 4.77it/s v_num: 1 train_loss: 0.613         
+                                                                                train_acc: 0.81 lr: 0.035 val_loss:
+                                                                                0.644 val_acc: 0.79                
+
+
+Epoch 12/23 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 98/98 0:00:20 • 0:00:00 4.71it/s v_num: 1 train_loss: 0.576         
+                                                                                train_acc: 0.818 lr: 0.032         
+                                                                                val_loss: 0.707 val_acc: 0.795     
+
+
+Epoch 13/23 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 98/98 0:00:20 • 0:00:00 4.77it/s v_num: 1 train_loss: 0.474         
+                                                                                train_acc: 0.836 lr: 0.029         
+                                                                                val_loss: 0.67 val_acc: 0.799      
+
+
+Epoch 14/23 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 98/98 0:00:21 • 0:00:00 4.72it/s v_num: 1 train_loss: 0.521         
+                                                                                train_acc: 0.807 lr: 0.026         
+                                                                                val_loss: 0.548 val_acc: 0.805     
+
+
+Epoch 15/23 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 98/98 0:00:20 • 0:00:00 4.76it/s v_num: 1 train_loss: 0.474         
+                                                                                train_acc: 0.824 lr: 0.023         
+                                                                                val_loss: 0.573 val_acc: 0.809     
+
+
+Epoch 16/23 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 98/98 0:00:20 • 0:00:00 4.76it/s v_num: 1 train_loss: 0.464         
+                                                                                train_acc: 0.839 lr: 0.02 val_loss:
+                                                                                0.614 val_acc: 0.812               
+
+
+Epoch 17/23 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 98/98 0:00:21 • 0:00:00 4.68it/s v_num: 1 train_loss: 0.412         
+                                                                                train_acc: 0.863 lr: 0.017         
+                                                                                val_loss: 0.645 val_acc: 0.819     
+
+
+Epoch 18/23 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 98/98 0:00:20 • 0:00:00 4.76it/s v_num: 1 train_loss: 0.347         
+                                                                                train_acc: 0.899 lr: 0.015         
+                                                                                val_loss: 0.47 val_acc: 0.836      
+
+
+Epoch 19/23 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 98/98 0:00:20 • 0:00:00 4.76it/s v_num: 1 train_loss: 0.422         
+                                                                                train_acc: 0.869 lr: 0.012         
+                                                                                val_loss: 0.436 val_acc: 0.844     
+
+
+Epoch 20/23 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 98/98 0:00:21 • 0:00:00 4.66it/s v_num: 1 train_loss: 0.284         
+                                                                                train_acc: 0.905 lr: 0.009         
+                                                                                val_loss: 0.45 val_acc: 0.853      
+
+
+Epoch 21/23 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 98/98 0:00:21 • 0:00:00 4.70it/s v_num: 1 train_loss: 0.238         
+                                                                                train_acc: 0.935 lr: 0.006         
+                                                                                val_loss: 0.397 val_acc: 0.869     
+
+
+Epoch 22/23 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 98/98 0:00:21 • 0:00:00 4.71it/s v_num: 1 train_loss: 0.197         
+                                                                                train_acc: 0.938 lr: 0.003         
+                                                                                val_loss: 0.344 val_acc: 0.883     
+
+
+Epoch 23/23 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 98/98 0:00:21 • 0:00:00 4.69it/s v_num: 1 train_loss: 0.139         
+                                                                                train_acc: 0.961 lr: 0.0 val_loss: 
+                                                                                0.308 val_acc: 0.903               
+INFO:pytorch_lightning.utilities.rank_zero:`Trainer.fit` stopped: `max_epochs=24` reached.
+```
+
+
+
+## Graphs
+
+#### Accuracy
+
+![Accuracy](img/acc.jpg)
+
+
+
+#### Loss
+
+![Loss](img/loss.jpg)
+
+
+
+#### Learning Rate
+
+![LR](img/lr.jpg)
+
+
+
+## 20 Misclassified Images
+
+![Misclassified](img/misclassified.jpg)
